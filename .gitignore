@@ -1,0 +1,12 @@
+.env
+.env.*
+
+tmp
+
+node_modules
+
+public/css/*
+public/js/*
+
+views/*.go
+views/**/*.go

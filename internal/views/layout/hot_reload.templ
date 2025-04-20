@@ -1,0 +1,20 @@
+package layouts
+
+import "barrytime/go_templ_boilerplate/internal/config"
+
+templ hotReload(env config.Env) {
+	if env != "prod" {
+		<script>
+            const ws = new WebSocket("ws://localhost:5000/ws");
+            ws.onmessage = function (event) {
+                if (event.data === "reload") {
+                    location.reload();
+                }
+            };
+            ws.onclose = function () {
+                console.log("WebSocket closed, attempting to reconnect...");
+                setTimeout(() => location.reload(), 1000); // Reconnect after restart
+            };
+        </script>
+	}
+}

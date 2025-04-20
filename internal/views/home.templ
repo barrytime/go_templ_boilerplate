@@ -1,0 +1,10 @@
+package views
+
+import "barrytime/go_templ_boilerplate/internal/views/layout"
+import "barrytime/go_templ_boilerplate/internal/config"
+
+templ Home(env config.Env) {
+	@layouts.Base(env) {
+		<h1>Home Page</h1>
+	}
+}

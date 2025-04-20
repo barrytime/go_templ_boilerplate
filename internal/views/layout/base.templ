@@ -1,0 +1,19 @@
+package layouts
+
+import "barrytime/go_templ_boilerplate/internal/config"
+
+templ Base(env config.Env) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			@Meta()
+		</head>
+		<body>
+			<main>
+				{ children... }
+			</main>
+			<script type="module" src="/public/js/main.js"></script>
+			@hotReload(env)
+		</body>
+	</html>
+}
