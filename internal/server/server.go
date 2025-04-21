@@ -41,6 +41,7 @@ func (s *Server) RegisterRoutes() http.Handler {
 	api.GET("/auth/logout", authHandler.Logout)
 	api.POST("/auth/register", authHandler.RegisterUser)
 	private := api.Group("")
+	private.Use(authHandler.SessionAuthMiddleware)
 	private.GET("/me", authHandler.PrivateHandler)
 
 	viewHandler := handler.ViewHandler{

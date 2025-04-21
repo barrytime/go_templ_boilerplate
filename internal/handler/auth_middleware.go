@@ -3,6 +3,7 @@ package handler
 import (
 	"barrytime/go_templ_boilerplate/internal/model"
 	"database/sql"
+	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -13,7 +14,8 @@ func (h *AuthHandler) SessionAuthMiddleware(next echo.HandlerFunc) echo.HandlerF
 		// Get session from Redis
 		session, err := h.Session.Get(c.Request(), h.Cfg.SessionName)
 		if err != nil {
-			return errAPIResponse(c, http.StatusInternalServerError, "failed to get session: "+err.Error())
+			fmt.Println(err)
+			return errAPIResponse(c, http.StatusInternalServerError, "failed to get session: ")
 		}
 
 		// Check for authenticated user

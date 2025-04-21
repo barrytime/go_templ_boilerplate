@@ -5,9 +5,9 @@ clean:
 	rm -f ./static/js/*.js
 
 db_login:
-	psql -U admin -d dev_db -h 192.168.0.137 -p 5435
+	psql -U admin -d dev_db -h localhost -p 5432
 
-.PHONY: db_up db_down db_populate db_reset
+.PHONY: db_up db_down db_reset
 
 db_up:
 	go run ./cmd/migrate/main.go up
@@ -15,10 +15,8 @@ db_up:
 db_down:
 	go run ./cmd/migrate/main.go down
 
-db_populate:
-	go run ./cmd/migrate/main.go populate
 
-db_reset: db_down db_up db_populate
+db_reset: db_down db_up
 
 .PHONY: templ
 templ:
